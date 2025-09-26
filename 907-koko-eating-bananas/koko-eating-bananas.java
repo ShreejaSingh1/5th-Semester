@@ -19,7 +19,9 @@ class Solution {
         public boolean possible(int[] piles,int mid,int h){
              long sum=0;
              for(int i=0;i<piles.length;i++){
-               sum+=(piles[i]+mid-1)/mid;
+               //sum+=(piles[i]+mid-1)/mid;
+               sum+=piles[i]/mid;
+               if(piles[i]%mid!=0) sum++;
 
              }
              if(sum<=h){
