@@ -6,9 +6,9 @@ class Solution {
         for(int i=0;i<=len;i++){
             int val=(i==len)?0:arr[i];
             while(!st.isEmpty() && val<arr[st.peek()]){
-                int nsr=i;
-                int tbs=st.pop();
-                int nsl=st.isEmpty()?-1:st.peek();
+                int nsr=i;//next smaller on right
+                int tbs=st.pop();//to be solved
+                int nsl=st.isEmpty()?-1:st.peek();//next smaller element on left
                 int wdt=nsr-nsl-1;
                 area=Math.max(wdt*arr[tbs],area);
             }
