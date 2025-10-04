@@ -1,22 +1,27 @@
-import java.util.*;
-
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>>ans = new ArrayList<>();
+        List<Integer>list = new ArrayList<>();
         Arrays.sort(candidates);
-        List<Set<List<Integer>>> dp = new ArrayList<>();
-        for (int i = 0; i <= target; i++) dp.add(new HashSet<>());
-        dp.get(0).add(new ArrayList<>());
+        helper(ans,list,candidates,target,0,0);
+        return ans;
+    }
 
-        for (int num : candidates) {
-            for (int t = target; t >= num; t--) {
-                for (List<Integer> prev : dp.get(t - num)) {
-                    List<Integer> newList = new ArrayList<>(prev);
-                    newList.add(num);
-                    dp.get(t).add(newList);
-                }
-            }
+    public void helper(List<List<Integer>>ans,List<Integer>list,int arr[],int tar,int idx, int sum){
+        if(sum==tar){
+            ans.add(new ArrayList<>(list));
+            return;
         }
 
-        return new ArrayList<>(dp.get(target));
+        if(idx>=arr.length || sum>tar){
+            return;
+        }
+
+        for(int i=idx;i<arr.length;i++){
+            if(i>idx && arr[i]==arr[i-1]){continue;}
+            list.add(arr[i]);
+            helper(ans,list,arr,tar,i+1,sum+arr[i]);
+            list.remove(list.size()-1);
+        }
     }
 }
