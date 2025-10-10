@@ -1,34 +1,21 @@
 class Solution {
     public int minAddToMakeValid(String s) {
-        int balance=0;
-        int insertions=0;
-
+        int a=0;
+        int b=0;
         for(char c:s.toCharArray()) {
             if(c=='(') {
-                balance++;
+                a++;
             } 
             else{
-                if(balance>0) {
-                    balance--;
+                if(a>0) {
+                    a--;
                 } else{
-                    insertions++;
+                    b++;
                 }
             }
         }
-
-        return insertions+balance;
+        return a+b;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
